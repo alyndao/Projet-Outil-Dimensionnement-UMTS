@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mediciel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Form.css') }}">
+    <script src="https://kit.fontawesome.com/b806a01065.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url("/static/images/img-telecom.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    image {
+        width: 450px;
+    }
+
+    .header {
+        width: 100%;
+        margin: auto;
+        padding: 20px;
+        background-color: #82d7ee;
+        height: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        opacity: 0.8;
+    }
+
+    .flip_card {
+        background-color: #82d7ee;
+        width: 350px;
+        height: 250px;
+        border: 1px solid #f1f1f1;
+        perspective: 1000px;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        margin-left: 35%;
+        margin-top: 5%;
+        border-radius: 40px;
+    }
+
+    .flip_card_inner {
+        position: absolute;
+        margin-top: 40px;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    input {
+        margin-bottom: 15px;
+        width: 250px;
+        height: 20px;
+    }
+
+    .btn1 {
+        margin-bottom: 10px;
+        width: 150px;
+        height: 30px;
+        border-radius: 10px;
+        background-color: #82d7ee;
+    }
+</style>
+
+<body>
+    <div class="header">
+        <div class="title">
+            <h1>Outil de Dimensionnement et de Planification d'un Réseau UMTS</h1>
+        </div>
+    </div>
+    <div class="flip_card">
+        <div class="flip_card_inner">
+            <div class="flip_card_front">
+                <form id="loginForm" onsubmit="redirectToCalculationPage(event)">
+                    <input type="text" name="username" placeholder="login" required>
+                    <input type="password" name="password" placeholder="password" required>
+                    <button class="btn1" type="submit"> <i class="fa-solid fa-user-nurse"></i> Connexion </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function redirectToCalculationPage(event) {
+            event.preventDefault(); // Empêche le formulaire de soumettre normalement
+            window.location.href = "/calcul"; // Redirige vers l'URL de calcul
+        }
+    </script>
+</body>
+<footer>Copyright Aly-Oumy DIC3-TR 2024 </footer>
+</html>

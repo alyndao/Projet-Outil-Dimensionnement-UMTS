@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outil de Dimensionnement et de Planification d'un Réseau UMTS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/images/img-telecom.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .titre {
+            width: 100%;
+            margin: auto;
+            padding: 20px;
+            background-color: #82d7ee;
+            height: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .entree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            width: 50%;
+            border-radius: 20px;
+            margin-top: 1px;
+            padding: 20px;
+            opacity: 0.8;
+        }
+
+        .input-group,
+        .output-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .input-group label {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .input-group input {
+            width: 100px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .largeur_inp {
+            width: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #82d7ee;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #82d7ee;
+        }
+
+        .results {
+            background-color: #82d7ee;
+            padding: 15px;
+            border-radius: 20px;
+            margin-top: -400px;
+            margin-left: 800px;
+            width: 30%;
+            display: block;
+            height: 350px;
+        }
+
+        .results div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="titre">
+        <h1>Outil de Dimensionnement et de Planification d'un Réseau UMTS</h1>
+    </div>
+    <div class="entree">
+        <form method="POST" action="/calculer">
+            <div>
+                <h2>Entrées</h2>
+                <h3>Veuillez entrer les informations suivantes</h3>
+            </div>
+            <div class="input-group">
+                <label for="nombre-abonnes">Nombre d'habitants</label>
+                <input type="number" id="nombre-abonnes" name="nombre_abonnes" required>
+            </div>
+            <div class="input-group">
+                <label for="taux_penetration">Taux de pénétration</label>
+                <input type="number" step="0.01" id="taux_penetration" name="taux_penetration" required>
+            </div>
+            <div class="input-group">
+                <label for="taux_trafic">Trafic par abonné à l'heure de pointe (en mErlangs)</label>
+                <input type="number" step="0.01" id="taux_trafic" name="taux_trafic" required>
+            </div>
+            <div class="input-group">
+                <label for="motif-reutilisation">Motif de réutilisation (format a/b)</label>
+                <input type="text" id="motif-reutilisation" name="motif_reutilisation" required>
+            </div>
+            <div class="input-group">
+                <label for="nombre-its-tch">Nombre d'IT/TCH reservé au cannaux BCH</label>
+                <input type="number" id="nombre-its-tch" name="nombre_its_tch" required>
+            </div>
+            <div class="input-group">
+                <label for="taux_blocage">Taux de blocage</label>
+                <select id="taux_blocage" name="taux_blocage" required>
+                    <option value="1">1%</option>
+                    <option value="2">2%</option>
+                    <option value="3">3%</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="frequence">Fréquence (MHz)</label>
+                <input type="number" id="frequence" name="frequence" required>
+            </div>
+            <div>
+                <button type="submit">Calculer</button>
+            </div>
+        </form>
+    </div>
+    {% if trafic_total is defined %}
+    <div class="results">
+        <h2>Résultats</h2>
+        <div>Trafic total : {{ trafic_total }} Erlangs</div>
+        <div>Trafic par cellule : {{ trafic_par_cellule }} Erlangs</div>
+        <div>Nombre de cellules nécessaires : {{ nombre_cellules }}</div>
+        <div>Nombre de sites nécessaires : {{ nombre_sites }}</div>
+    </div>
+    {% endif %}
+</body>
+<footer>Copyright Aly-Oumy DIC3-TR 2024 </footer>
+</html>
